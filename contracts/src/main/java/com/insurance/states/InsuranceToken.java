@@ -26,8 +26,8 @@ public class InsuranceToken implements ContractState {
     private final String model;
     private final int mileage;
     private final int price;
-    private final Party ownedBy;
-    private final Party insurance;
+    private Party ownedBy;
+    private Party insurance;
 
 
 
@@ -87,5 +87,13 @@ public class InsuranceToken implements ContractState {
     }
     public Party getOwnedBy() {
         return ownedBy;
+    }
+
+    public void setInsurance(Party issuer) {
+        this.insurance = insurance;
+    }
+
+    public void setOwnedBy(Party owner) {
+        this.ownedBy = ownedBy;
     }
 }
