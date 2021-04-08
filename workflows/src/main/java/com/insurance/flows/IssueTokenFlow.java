@@ -24,13 +24,13 @@ public class IssueTokenFlow extends FlowLogic<SignedTransaction> {
     private final String tokenName;
     private final Long quantity;
     private final Party recipient;
-    private final List<Party> observers;
+//    private final List<Party> observers;
 
-    public IssueTokenFlow(String tokenName, Long quantity, Party recipient, List<Party> observers) {
+    public IssueTokenFlow(String tokenName, Long quantity, Party recipient /*, List<Party> observers */) {
         this.tokenName = tokenName;
         this.quantity = quantity;
         this.recipient = recipient;
-        this.observers = observers;
+//        this.observers = observers;
     }
 
 
@@ -56,7 +56,7 @@ public class IssueTokenFlow extends FlowLogic<SignedTransaction> {
         FungibleToken fungibleToken  = new FungibleToken(amount, recipient, TransactionUtilitiesKt.getAttachmentIdForGenericParam(token));
 
         //use built in flow for issuing tokens on ledger
-        return subFlow(new IssueTokens(Arrays.asList(fungibleToken), observers));
+        return subFlow(new IssueTokens(Arrays.asList(fungibleToken)/*, observers */));
     }
 
 

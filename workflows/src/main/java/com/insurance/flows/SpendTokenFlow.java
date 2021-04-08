@@ -31,21 +31,20 @@ public class SpendTokenFlow extends FlowLogic<SignedTransaction> {
         return recipient;
     }
 
-
     public String getTokenName() {
         return tokenName;
     }
-
 
     public Long getQuantity() {
         return quantity;
     }
 
-
-
     public Party getHolderName() {
         return holderName;
     }
+
+
+
 
 
     @Override
@@ -67,7 +66,7 @@ public class SpendTokenFlow extends FlowLogic<SignedTransaction> {
         Vault.Page<FungibleToken> fing= getServiceHub().getVaultService().queryBy(FungibleToken.class,criteria);
         System.out.println(fing.getStates().get(0).getState().getData().getAmount().getQuantity());
 
-        return subFlow(new MoveFungibleTokens(new PartyAndAmount(recipient,new Amount(quantity, token)),new ArrayList<>(),criteria,holderName));
+        return subFlow(new MoveFungibleTokens(new PartyAndAmount(recipient,new Amount(quantity, token)),new ArrayList<Party>(),criteria,holderName));
     }
 
 

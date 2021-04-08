@@ -18,41 +18,63 @@
 </head>
 <body ng-app="demoAppModule" ng-controller="DemoAppController as demoApp">
 
-<h1 class="col-sm-12">Issue token:</h1>
 
-<form action="/issue-token" method="post" class="col-sm-12">
+<h1 class="col-sm-12">Register vehicle:</h1>
+
+<form action="/create-token" method="post" class="col-sm-12">
+    <div class="form-group col-sm-6">
+        <label for="owner-it">Owner:</label>
+        <input id="owner-it" type="text" class="form-control" name="ownedBy">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="insurance-it">Insurance:</label>
+        <input id="insurance-it" type="text" class="form-control" name="insurance">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="regno-it">Registration Number:</label>
+        <input id="regno-it" type="text" class="form-control" name="regno">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="make-it">Make:</label>
+        <input id="make-it" type="text" class="form-control" name="make">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="model-it">Model:</label>
+        <input id="model-it" type="text" class="form-control" name="model">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="mileage-it">Mileage:</label>
+        <input id="mileage-it" type="text" class="form-control" name="mileage">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="price-it">Price:</label>
+        <input id="price-it" type="text" class="form-control" name="price">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h1 class="col-sm-12">Spend token:</h1>
+
+<form action="/spend-token" method="post" class="col-sm-12">
     <div class="form-group col-sm-6">
         <label for="tokenname-it">TokenCode:</label>
         <input id="tokenname-it" type="text" class="form-control" name="tokenname">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="holder-it">Holder:</label>
+        <input id="holder-it" type="text" class="form-control" name="holdername">
     </div>
     <div class="form-group col-sm-6">
         <label for="quantity-it">Quantity:</label>
         <input id="quantity-it" type="text" class="form-control" name="quantity">
     </div>
     <div class="form-group col-sm-6">
-        <label for="recipient-it">Recipient:</label>
+        <label for="recipient-it">Provider:</label>
         <input id="recipient-it" type="text" class="form-control" name="recipient">
     </div>
-    <div class="form-group col-sm-6">
-        <label for="observer-it">Observers:</label>
-        <input id="observer-it" type="text" class="form-control" name="observers">
-    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<h1 class="col-sm-12">Issue asset:</h1>
-
-<form action="/issue-asset" method="post" class="col-sm-12">
-    <div class="form-group col-sm-6">
-        <label for="recipient-ia">Recipient:</label>
-        <input id="recipient-ia" type="text" class="form-control" name="recipient">
-    </div>
-    <div class="form-group col-sm-6">
-        <label for="description-ia">Description:</label>
-        <input id="description-ia" type="text" class="form-control" name="description">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 
 <h1 class="col-sm-12">Exchange asset for token:</h1>
 
@@ -81,30 +103,10 @@
                 <div ng-repeat="token in demoApp.tokens" class="panel panel-default">
                     <div class="panel-body">
                         <ul>
-                            <li>Issuer: {{token.recipient}}</li>
+                            <li>Issuer: {{token.issuer}}</li>
                             <li>Owner: {{token.owner}}</li>
                             <li>Amount: {{token.amount}}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h1 class="col-sm-12">Assets owned:</h1>
-
-<div class="col-sm-12">
-    <div class="panel-group" id="accordion-2">
-        <div class="panel">
-            <div>
-                <div ng-repeat="asset in demoApp.assets" class="panel panel-default">
-                    <div class="panel-body">
-                        <ul>
-                            <li>Issuer: {{asset.issuer}}</li>
-                            <li>Owner: {{asset.owner}}</li>
-                            <li>Description: {{asset.description}}</li>
-                            <li>ID: {{asset.assetid}}</li>
+                            <li>Registration Number: {{token.registration}}</li>
                         </ul>
                     </div>
                 </div>
