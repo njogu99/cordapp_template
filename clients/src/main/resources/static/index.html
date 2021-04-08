@@ -75,24 +75,24 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<h1 class="col-sm-12">Spend token:</h1>
 
-<h1 class="col-sm-12">Exchange asset for token:</h1>
-
-<form action="/exchange-asset-for-token" method="post" class="col-sm-12">
-    <div class="form-group col-sm-4">
-        <label for="assetid-eaft">Asset ID:</label>
-        <input id="assetid-eaft" type="text" class="form-control" name="assetId">
+<form action="/redeem-token" method="post" class="col-sm-12">
+    <div class="form-group col-sm-6">
+        <label for="tokenname-red">TokenCode:</label>
+        <input id="tokenname-red" type="text" class="form-control" name="tokenname">
     </div>
-    <div class="form-group col-sm-4">
-        <label for="counterparty-eaft">Counterparty:</label>
-        <input id="counterparty-eaft" type="text" class="form-control" name="counterparty">
+    <div class="form-group col-sm-6">
+        <label for="issuer-red">Issuer:</label>
+        <input id="issuer-red" type="text" class="form-control" name="issuername">
     </div>
-    <div class="form-group col-sm-4">
-        <label for="amount-eaft">Amount:</label>
-        <input id="amount-eaft" type="text" class="form-control" name="amount">
+    <div class="form-group col-sm-6">
+        <label for="quantity-red">Quantity:</label>
+        <input id="quantity-red" type="text" class="form-control" name="quantity">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 
 <h1 class="col-sm-12">Tokens owned:</h1>
 

@@ -2,6 +2,7 @@ package com.insurance.webserver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.insurance.flows.IssueTokenFlow;
+import com.insurance.flows.RedeemTokenFlow;
 import com.insurance.flows.RegisterVehicleFlow;
 import com.insurance.flows.SpendTokenFlow;
 import com.insurance.states.InsuranceToken;
@@ -185,6 +186,19 @@ public class Controller {
         Party holder = proxy.partiesFromName(holderName, false).iterator().next();
 
         SignedTransaction result = proxy.startFlowDynamic(SpendTokenFlow.class, tokenName,holder,quantity,recipient).getReturnValue().get();
+        return ResponseEntity.status(HttpStatus.CREATED).body("Transaction id "+ result.getId() +" committed to ledger.\n " + result.getTx().getOutput(0));
+    }
+
+    @PostMapping(path = "redeem-token", produces = "text/plain")
+    private ResponseEntity<String> redeemToken(@RequestParam(value = "tokenname") String tokenName,
+                                              @RequestParam(value = "issuername") String issuerName,
+                                              @RequestParam(value = "quantity") Long quantity
+    ) throws ExecutionException, InterruptedException {
+
+//
+        Party issuer = proxy.partiesFromName(issuerName, false).iterator().next();
+
+        SignedTransaction result = proxy.startFlowDynamic(RedeemTokenFlow.class, tokenName,issuer,quantity).getReturnValue().get();
         return ResponseEntity.status(HttpStatus.CREATED).body("Transaction id "+ result.getId() +" committed to ledger.\n " + result.getTx().getOutput(0));
     }
 
