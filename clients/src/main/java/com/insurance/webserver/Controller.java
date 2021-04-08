@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -144,9 +145,27 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.CREATED).body("Transaction  committed to ledger.\n ");
     }
 
+    @PostMapping(path = "create-token", produces = "text/plain")
+    private ResponseEntity<String> createToken(@RequestParam(value = "tokenname") String tokenName,
+                                              @RequestParam(value = "quantity") Long quantity,
+                                              @RequestParam(value = "recipient") String recipientName,
+                                              @RequestParam(value = "observers") String observerName
+    ) throws ExecutionException, InterruptedException {
+
+//        Party recipient = proxy.wellKnownPartyFromX500Name(CordaX500Name.parse(recipientName));
+        Party recipient = proxy.partiesFromName(recipientName, false).iterator().next();
+//        Party observer = proxy.wellKnownPartyFromX500Name(CordaX500Name.parse(observerName));
+        Party observer = proxy.partiesFromName(observerName, false).iterator().next();
+
+        ArrayList<Party> observers = new ArrayList<Party>();
+        observers.add (observer);
+
+        proxy.startFlowDynamic(IssueTokenFlow.class, tokenName,quantity,recipient,observers).getReturnValue().get();
+        return ResponseEntity.status(HttpStatus.CREATED).body("Transaction  committed to ledger.\n ");
+    }
     @PostMapping(path = "issue-token", produces = "text/plain")
     private ResponseEntity<String> issueToken(@RequestParam(value = "tokenname") String tokenName,
-                                              @RequestParam(value = "quantity") int quantity,
+                                              @RequestParam(value = "quantity") Long quantity,
                                               @RequestParam(value = "recipient") String recipientName,
                                               @RequestParam(value = "observers") String observerName
                                               ) throws ExecutionException, InterruptedException {
@@ -156,7 +175,10 @@ public class Controller {
 //        Party observer = proxy.wellKnownPartyFromX500Name(CordaX500Name.parse(observerName));
         Party observer = proxy.partiesFromName(observerName, false).iterator().next();
 
-        proxy.startFlowDynamic(IssueTokenFlow.class, tokenName,quantity,recipient,observer).getReturnValue().get();
+        ArrayList<Party> observers = new ArrayList<Party>();
+        observers.add (observer);
+
+        proxy.startFlowDynamic(IssueTokenFlow.class, tokenName,quantity,recipient,observers).getReturnValue().get();
         return ResponseEntity.status(HttpStatus.CREATED).body("Transaction  committed to ledger.\n ");
     }
 

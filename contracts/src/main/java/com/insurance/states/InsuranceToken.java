@@ -85,6 +85,7 @@ public class InsuranceToken implements ContractState {
     public Party getInsurance() {
         return insurance;
     }
+
     public Party getOwnedBy() {
         return ownedBy;
     }
@@ -92,8 +93,8 @@ public class InsuranceToken implements ContractState {
     public void setInsurance(Party issuer) {
         this.insurance = insurance;
     }
-
-    public void setOwnedBy(Party owner) {
+    public void setOwnedBy(Party ownedBy) {
         this.ownedBy = ownedBy;
     }
+
 }
