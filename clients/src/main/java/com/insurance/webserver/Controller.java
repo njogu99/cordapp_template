@@ -195,7 +195,6 @@ public class Controller {
                                               @RequestParam(value = "quantity") Long quantity
     ) throws ExecutionException, InterruptedException {
 
-//
         Party issuer = proxy.partiesFromName(issuerName, false).iterator().next();
 
         SignedTransaction result = proxy.startFlowDynamic(RedeemTokenFlow.class, tokenName,issuer,quantity).getReturnValue().get();

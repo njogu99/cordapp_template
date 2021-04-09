@@ -95,6 +95,9 @@ dependencies {
     // CorDapp dependencies.
     cordapp project(":workflows")
     cordapp project(":contracts")
+    cordapp "$corda_release_group:corda-finance-contracts:$corda_release_version"
+    cordapp "$corda_release_group:corda-finance-workflows:$corda_release_version"
+    cordapp "$corda_release_group:corda-confidential-identities:$corda_release_version"
 
     cordaCompile "org.apache.logging.log4j:log4j-slf4j-impl:${log4j_version}"
     cordaCompile "org.apache.logging.log4j:log4j-web:${log4j_version}"
@@ -143,6 +146,8 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         cordapp project(':workflows')
         cordapp "$tokens_release_group:tokens-contracts:$tokens_release_version"
         cordapp "$tokens_release_group:tokens-workflows:$tokens_release_version"
+        cordapp("$corda_release_group:corda-confidential-identities:$corda_release_version")
+
 
         runSchemaMigration = true //This configuration is for any CorDapps with custom schema, We will leave this as true to avoid
         //problems for developers who are not familiar with Corda. If you are not using custom schemas, you can change
