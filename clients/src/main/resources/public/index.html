@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.1/angular.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
+    
+</head>
+<body ng-app="demoAppModule" ng-controller="DemoAppController as demoApp" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#register">Register New Policy</a></li>
+        <li><a href="#spend">Spend Token</a></li>
+        <li><a href="#send">Send Token</a></li>
+        <li><a href="#redeem">Redeem Token</a></li>
+        <li><a href="#burn">Burn Token</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>InsureBlock</h1> 
+  <p>Insurance Tokens made easy</p> 
+  <div class="navbar-header ">
+    <a class="navbar-brand text-center" href="#">{{demoApp.thisNode}}</a>
+  </div>
+</div>
+
+
+<!-- Container (About Section) -->
+<div id="register" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Register New Policy</h2><br>
+      <form action="/create-token" method="post">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="name-it" class="control-label">Full Name:</label>
+                <input id="name-it" type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+                <label for="idno-it" class="control-label">ID Number:</label>
+                <input id="idno-it" type="text" class="form-control" name="idno">
+            </div>
+            <div class="form-group">
+                <label for="dob-it" class="control-label">Date of Birth: (ddMMyyyy)</label>
+                <input id="dob-it" type="text" class="form-control" name="dob">
+            </div>
+            <div class="form-group">
+                <label for="amount-it" class="control-label">Amount:</label>
+                <input id="amount-it" type="text" class="form-control" name="amount">
+            </div>
+            <div class="form-group">
+                <label for="insurance-it" class="control-label">Insurance:</label>
+                <input id="insurance-it" list="insurance-list" class="form-control" name="insurance">
+                <datalist id="insurance-list">
+                    <option value="Insurance">
+                  </datalist>
+            </div>
+            <!-- <div ng-show="createIOUModal.formError" class="form-group">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Enter valid parameters
+                </div>
+            </div> -->
+            <input class="btn btn-primary" type="submit">
+        </div>
+        
+      </form>
+    </div>
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-signal logo"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Container (Services Section) -->
+<div id="spend" class="container-fluid">
+    <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo"></span>
+      </div>
+    <div class="container-fluid bg-grey">
+        <div class="row">
+            <div class="col-sm-8">
+          <h2>Spend Tokens</h2><br>
+            <form action="/spend-token" method="post">
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="tokenname-sp" class="control-label">Token Code:</label>
+                      <input id="tokenname-sp" list="token-list" class="form-control" name="tokenname">
+                      <datalist id="token-list">
+                        <option value="HTKN">
+                      </datalist>
+                  </div>
+                  <div class="form-group">
+                      <label for="holder-sp" class="control-label">Holder:</label>
+                      <input id="holder-sp" list="holders" class="form-control" name="holdername">
+                      <datalist id="holders">
+                        <option value="Insurance">
+                      </datalist>
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity-sp" class="control-label">Amount:</label>
+                    <input id="quantity-sp" type="text" class="form-control" name="quantity">
+                </div>
+                <div class="form-group">
+                    <label for="provider-sp" class="control-label">Provider:</label>
+                    <input id="provider-sp" list="providers" class="form-control" name="recipient">
+                    <datalist id="providers">
+                      <option value="Hospital">
+                    </datalist>
+                </div>
+                  <!-- <div ng-show="createIOUModal.formError" class="form-group">
+                      <div class="alert alert-danger" role="alert">
+                          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                          <span class="sr-only">Error:</span>
+                          Enter valid parameters
+                      </div>
+                  </div> -->
+                  <input class="btn btn-primary" type="submit">
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div id="send" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>Send Tokens</h2><br>
+        <form action="/spend-token" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tokenname-se" class="control-label">Token Code:</label>
+                    <input id="tokenname-se" list="tokense-list" class="form-control" name="tokenname">
+                    <datalist id="tokense-list">
+                      <option value="HTKN">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="holder-se" class="control-label">Holder:</label>
+                    <input id="holder-se" list="senders" class="form-control" name="holdername">
+                    <datalist id="senders">
+                        <option value="Hospital">
+                        <option value="Tech Domain">
+                        <option value="Insurance">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                  <label for="quantity-se" class="control-label">Amount:</label>
+                  <input id="quantity-se" type="text" class="form-control" name="quantity">
+              </div>
+              <div class="form-group">
+                  <label for="provider-se" class="control-label">Recipient:</label>
+                  <input id="provider-se" list="receivers" class="form-control" name="recipient">
+                  <datalist id="receivers">
+                    <option value="Hospital">
+                        <option value="Hospital">
+                        <option value="Tech Domain">
+                        <option value="Insurance">
+                  </datalist>
+              </div>
+                <!-- <div ng-show="createIOUModal.formError" class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Enter valid parameters
+                    </div>
+                </div> -->
+                <input class="btn btn-primary" type="submit">
+            </div>
+          </form>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo"></span>
+      </div>
+    </div>
+  </div>
+
+<!-- Container (Pricing Section) -->
+<div id="redeem" class="container-fluid">
+    <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo"></span>
+      </div>
+    <div class="container-fluid bg-grey">
+        <div class="row">
+            <div class="col-sm-8">
+          <h2>Redeem Tokens</h2><br>
+          <form action="/spend-token" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tokenname-red" class="control-label">Token Code:</label>
+                    <input id="tokenname-red" list="token-list" class="form-control" name="tokenname">
+                    <datalist id="tokenred-list">
+                      <option value="HTKN">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="holder-red" class="control-label">Holder:</label>
+                    <input id="holder-red" list="redeemers" class="form-control" name="holdername">
+                    <datalist id="redeemers">
+                      <option value="Hospital">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                  <label for="quantity-red" class="control-label">Amount:</label>
+                  <input id="quantity-red" type="text" class="form-control" name="quantity">
+              </div>
+              <div class="form-group">
+                  <label for="provider-red" class="control-label">Issuer:</label>
+                  <input id="provider-red" list="issuers" class="form-control" name="recipient">
+                  <datalist id="issuers">
+                    <option value="Tech Domain">
+                  </datalist>
+              </div>
+                <!-- <div ng-show="createIOUModal.formError" class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Enter valid parameters
+                    </div>
+                </div> -->
+                <input class="btn btn-primary" type="submit">
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Container (Contact Section) -->
+<div id="burn" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>Burn Tokens</h2><br>
+        <form action="/redeem-token" method="post">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tokenname-brn" class="control-label">Token Code:</label>
+                    <input id="tokenname-brn" list="tokenbrn-list" class="form-control" name="tokenname">
+                    <datalist id="tokenbrn-list">
+                      <option value="HTKN">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="holder-brn" class="control-label">Holder:</label>
+                    <input id="holder-brn" list="burner" class="form-control" name="holdername">
+                    <datalist id="burner">
+                      <option value="Tech Domain">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                  <label for="quantity-brn" class="control-label">Amount:</label>
+                  <input id="quantity-brn" type="text" class="form-control" name="quantity">
+              </div>
+                <!-- <div ng-show="createIOUModal.formError" class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        Enter valid parameters
+                    </div>
+                </div> -->
+                <input class="btn btn-primary" type="submit">
+            </div>
+          </form>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo"></span>
+      </div>
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+</body>
+</html>
